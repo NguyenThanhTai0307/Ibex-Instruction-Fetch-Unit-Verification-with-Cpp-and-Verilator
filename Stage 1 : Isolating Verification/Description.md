@@ -6,6 +6,8 @@ the rest of the  RISC-V core ).
 - Verify the basic operation of the IFU.
 - Ensure the correctness and integrity of the instructions going into and out of the IFU.
 - Ensure the timing and the word-aligned fetching of instruction are not violated.
+- Check for the operation of the prefetch FIFO feedthrough path.
+- Check the FIFO limit, ensure that it will not require any more instruction when it is full.
 
 3. Tools :
 - FuseSoc
