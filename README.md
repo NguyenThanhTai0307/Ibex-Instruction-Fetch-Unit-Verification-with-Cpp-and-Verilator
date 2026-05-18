@@ -1,4 +1,4 @@
-# Ibex-Instruction-Fetch-Unit-Verification-with-C-and-Verilator
+# Ibex-Instruction-Fetch-Unit-Verification-with-C++-and-Verilator
 
 NOTE:
 1. Official Ibex Document : [Ibex Instruction Fetch Document](https://ibex-core.readthedocs.io/en/latest/03_reference/instruction_fetch.html)
