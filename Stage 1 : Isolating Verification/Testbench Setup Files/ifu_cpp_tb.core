@@ -1,0 +1,70 @@
+CAPI=2:
+name: "thanhtai:verification:ifu_cpp_tb:1.0"
+description: "C++ Testbench for the Ibex Instruction Fetch Unit with Spike Co-Sim"
+
+filesets:
+  # ==========================================
+  # 1. SystemVerilog Testbench & RTL Files
+  # ==========================================
+  tb_files:
+    files:
+      - ibex_pkg.sv
+      - ibex_fetch_fifo.sv
+      - ibex_prefetch_buffer.sv
+      - ibex_compressed_decoder.sv  
+      - ibex_branch_predict.sv      
+      - ibex_dummy_instr.sv         
+      - ibex_icache.sv              
+      - ibex_if_stage.sv
+      - ibex_assertion.sv
+      - ibex_top.sv
+    file_type: systemVerilogSource
+    depend:
+      - lowrisc:prim:assert
+      - lowrisc:prim:clock_gating
+      - lowrisc:prim:lfsr
+      - lowrisc:prim:buf
+      - lowrisc:prim:secded
+
+  # ==========================================
+  # 2. C++ Testbench Wrappers & Spike DPI Bridge
+  # ==========================================
+  cpp_files:
+    files:
+      # --- Headers (Explicitly marked as include files) ---
+      - ibex_output_item.h: {is_include_file: true}
+      - ibex_memory_driver.h: {is_include_file: true}
+      - ibex_functional_coverage.h: {is_include_file: true}
+      - ibex_output_monitor.h: {is_include_file: true}
+      - ibex_scoreboard.h: {is_include_file: true}
+      - ibex_golden_model.h: {is_include_file: true}
+
+      # Ensure these are compiled as separate translation units (using .h files)
+      # If sim_main.cpp #includes them directly, remove them from this list!
+      - ibex_memory_driver.cpp
+      - ibex_output_monitor.cpp
+      - ibex_scoreboard.cpp
+      - ibex_sim_main.cpp
+      - ibex_golden_model.cpp
+      - ibex_functional_coverage.cpp
+    file_type: cppSource
+
+# ==========================================
+# 3. Execution Targets
+# ==========================================
+targets:
+  sim:
+    default_tool: verilator
+    filesets:
+      - tb_files
+      - cpp_files
+    toplevel: top
+    tools:
+      verilator:
+        mode: cc
+        verilator_options:
+          - '--timing'
+          - '--trace'
+          - '--assert'
+          - '--coverage'
+          - '--coverage-user'
