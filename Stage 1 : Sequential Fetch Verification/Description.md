@@ -13,6 +13,5 @@ the rest of the  RISC-V core ).
 - FuseSoc
 
 4. Note :
-- We will not check the flush of the prefetch FIFO (i.e. Branch Flush, Invalid Flush, No Flush,...)
-since we are isolating the IFU from the main components of the core.
+- We will not check the flush of the prefetch FIFO (i.e. Branch Flush, Invalid Flush, No Flush,...), this will be done in stage 2.
 - Before compiling the testbench, we have to install FuseSoc and all the required python packages of Ibex.
