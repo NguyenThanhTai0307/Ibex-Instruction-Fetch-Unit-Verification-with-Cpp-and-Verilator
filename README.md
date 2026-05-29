@@ -1,4 +1,4 @@
-# Ibex-Instruction-Fetch-Unit-Verification-with-C++-and-Verilator
+# Ibex-Instruction-Fetch-Unit-Verification-with-C++-and-Verilator (In Progress)
 
 CREDIT : 
 This project is done using the Ibex core of LowRISC [lowRISC](https://github.com/lowRISC/ibex)
